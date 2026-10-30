@@ -11,12 +11,12 @@ Setup:
 import os, time, requests
 
 # ---------- SETTINGS (edit these) ----------
-SYMBOLS   = ["ETHUSDT", "SOLUSDT", "LINKUSDT", "DOTUSDT"]
-INTERVAL  = "60"      # minutes: 15, 60, 240, or "D"
+SYMBOLS   = ["ETHUSDT", "SOLUSDT", "LINKUSDT", "BTCUSDT"]
+INTERVAL  = "15"      # minutes: 15, 60, 240, or "D"
 SWING_K   = 3         # candles each side to confirm a swing high/low
-EMA_FAST, EMA_MID, EMA_SLOW = 20, 50, 200
+EMA_FAST, EMA_MID, EMA_SLOW = 21, 50, 200
 RSI_LEN   = 14
-RR        = 2.0       # target = entry +/- RR * risk
+RR        = 1.0       # target = entry +/- RR * risk
 MIN_SCORE = 1         # confluence points needed to alert (max 3)
 FRESH_MIN = 20      # only alert on candles that closed in the last N minutes
 # -------------------------------------------
