@@ -12,7 +12,7 @@ import os, time, requests
 
 # ---------- SETTINGS (edit these) ----------
 SYMBOLS   = ["ETHUSDT", "SOLUSDT", "LINKUSDT", "BTCUSDT"]
-INTERVAL  = "15"      # minutes: 15, 60, 240, or "D"
+INTERVAL  = "60"      # minutes: 15, 60, 240, or "D"
 SWING_K   = 3         # candles each side to confirm a swing high/low
 EMA_FAST, EMA_MID, EMA_SLOW = 21, 50, 200
 RSI_LEN   = 14
