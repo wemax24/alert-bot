@@ -10,7 +10,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests
-      - run: python backtest.py
+      - run: python backtest2.py
         env:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
