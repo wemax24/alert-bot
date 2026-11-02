@@ -1,18 +1,35 @@
 name: Trade alerts
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "5 */4 * * *"
   workflow_dispatch:
+    inputs:
+      job:
+        description: "livetest, backtest or zec"
+        default: "livetest"
 jobs:
   run:
     runs-on: ubuntu-latest
+    env:
+      TG_TOKEN: ${{ secrets.TG_TOKEN }}
+      TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install requests
-      - run: python trade_alert_bot_online.py
+      - name: Live alerts
+        if: github.event_name == 'schedule'
+        run: python trade_alert_bot_v3.py
+      - name: Live test
+        if: github.event_name == 'workflow_dispatch' && inputs.job == 'livetest'
+        run: python trade_alert_bot_v3.py
         env:
-          TG_TOKEN: ${{ secrets.TG_TOKEN }}
-          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          MODE: test
+      - name: Backtest
+        if: github.event_name == 'workflow_dispatch' && inputs.job == 'backtest'
+        run: python backtest3.py
+      - name: ZEC 3-candle backtest
+        if: github.event_name == 'workflow_dispatch' && inputs.job == 'zec'
+        run: python backtest4.py
