@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       job:
-        description: "livetest, backtest or zec"
+        description: "livetest, backtest, zec or scalp"
         default: "livetest"
 jobs:
   run:
@@ -33,3 +33,6 @@ jobs:
       - name: ZEC 3-candle backtest
         if: github.event_name == 'workflow_dispatch' && inputs.job == 'zec'
         run: python backtest4.py
+      - name: 15m scalping backtest
+        if: github.event_name == 'workflow_dispatch' && inputs.job == 'scalp'
+        run: python backtest5.py
